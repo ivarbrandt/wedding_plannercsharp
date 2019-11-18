@@ -1,0 +1,79 @@
+﻿@model UserLoginVM
+
+<div class="row mt-3 justify-content-center">
+  <div class="col-sm-3 mr-5">
+    <h1>Register</h1>
+    <br />
+    <form
+      asp-action="Register"
+      asp-controller="Home"
+      class="form-group"
+      method="post"
+    >
+      <div class="row my-3">
+        <label asp-for="NewUser.FirstName"></label>
+        <span asp-validation-for="NewUser.FirstName"></span>
+        <input class="form-control" asp-for="NewUser.FirstName" />
+      </div>
+
+      <div class="row my-3">
+        <label asp-for="NewUser.LastName"></label>
+        <span asp-validation-for="NewUser.LastName"></span>
+        <input class="form-control" asp-for="NewUser.LastName" />
+      </div>
+
+      <div class="row my-3">
+        <label asp-for="NewUser.Email"></label>
+        <span asp-validation-for="NewUser.Email"></span>
+        <input class="form-control" asp-for="NewUser.Email" />
+      </div>
+
+      <div class="row my-3">
+        <label asp-for="NewUser.Password"></label>
+        <span asp-validation-for="NewUser.Password"></span>
+        <input class="form-control" asp-for="NewUser.Password" />
+      </div>
+
+      <div class="row my-3">
+        <label asp-for="NewUser.ConfirmPassword"></label>
+        <span asp-validation-for="NewUser.ConfirmPassword"></span>
+        <input class="form-control" asp-for="NewUser.ConfirmPassword" />
+      </div>
+
+      <div class="row my-3">
+        <button class="btn btn-primary btn-sm" type="submit" style="margin-top: 17px">
+          Register
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-sm-3">
+    <h1>Login</h1>
+    <br />
+    <form
+      asp-action="Login"
+      asp-controller="Home"
+      class="form-group"
+      method="post"
+    >
+      <div class="row my-3">
+        <label asp-for="LoggedUser.LoginEmail"></label>
+        <span asp-validation-for="LoggedUser.LoginEmail"></span>
+        <input class="form-control" asp-for="LoggedUser.LoginEmail" />
+      </div>
+
+      <div class="row my-3">
+        <label asp-for="LoggedUser.LoginPassword"></label>
+        <span asp-validation-for="LoggedUser.LoginPassword"></span>
+        <input class="form-control" asp-for="LoggedUser.LoginPassword" />
+      </div>
+
+      <div class="row my-3">
+        <button class="btn btn-primary btn-sm" type="submit" style="margin-top: 17px">
+          Log In
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

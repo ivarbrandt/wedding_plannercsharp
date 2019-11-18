@@ -1,0 +1,72 @@
+@model WeddingUserVM
+
+<h2 class="text-center mt-2">Welcome to the Wedding Planner</h2>
+<div class="float-right">
+  <form asp-action="Logout" asp-controller="Home" method="POST">
+  <button class="btn btn-link float-right">Logout</button>
+</form>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Wedding</th>
+      <th scope="col">Date</th>
+      <th scope="col">Guests</th>
+      <th scope="col">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+      @{ 
+      @foreach (Wedding wedding in @Model.AllWeddings)
+      {
+        <tr>
+          <td><a href="/details/@wedding.WeddingID">@wedding.WedderOne & @wedding.WedderTwo</a></td>
+          <td>@wedding.Date.ToString("MMM d, yyyy")</td>
+          <td>@wedding.Attendees.Count</td>
+          
+          @if (wedding.UserID == Model.User.UserID)
+          {
+            <td>
+              <form action="/delete/@wedding.WeddingID" method="POST">
+                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+              </form>
+            </td>
+          }
+
+          else if (wedding.Attendees.All(u => u.UserID != @Model.User.UserID))
+          {
+            <td>
+              <form asp-action="RSVP" asp-controller="Wedding" method="post">
+              <input type="hidden" asp-for="Guest.UserID" value="@Model.User.UserID">
+              <input type="hidden" asp-for="Guest.WeddingID" value="@wedding.WeddingID">
+                <button class="btn btn-primary btn-sm">RSVP</button>
+              </form>
+            </td>
+          }
+            
+          else
+            {
+              <td>
+                <form action="/cancel/@wedding.WeddingID" method="POST">
+                  <button class="btn btn-secondary btn-sm" type="submit">Un-RSVP</button>
+                
+                </form>
+              </td>
+            }
+
+          
+
+        </tr>
+      }
+      }
+
+      
+  </tbody>
+</table>
+
+<div class="float-right">
+  <a href="/add" class="btn btn-dark btn-sm">New Wedding</a>
+</div>
+

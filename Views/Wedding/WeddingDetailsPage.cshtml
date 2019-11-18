@@ -1,0 +1,25 @@
+@model Wedding
+
+<h1 class="mt-2">@Model.WedderOne and @Model.WedderTwo</h1>
+
+<div class="float-right">
+  <form asp-action="Logout" asp-controller="Home" method="POST">
+    <button class="btn btn-link float-right">Logout</button>
+  </form>
+</div>
+
+<div class="float-right">
+  <a href="/Dashboard" class="btn btn-link">Dashboard</a>
+</div>
+
+<div class="mt-5">
+  <h4>Date: @Model.Date.ToString("MMM d, yyyy")</h4>
+</div>
+
+<div class="mt-5">
+  <h6>Guests:</h6>
+  @foreach(Guest guest in Model.Attendees) 
+  {
+  <h6 class="ml-4">@guest.User.FirstName @guest.User.LastName</h6>
+  }
+</div>
